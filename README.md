@@ -1,3 +1,7 @@
+#NOTICE
+
+This repository has elements under license. Use of them is only for educational use.
+
 # Adminpro
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.6.7.
