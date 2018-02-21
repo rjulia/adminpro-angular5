@@ -1,4 +1,4 @@
-#NOTICE
+# NOTICE
 
 This repository has elements under license. Use of them is only for educational use.
 
