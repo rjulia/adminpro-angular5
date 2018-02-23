@@ -1,15 +1,20 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from "@angular/core";
 
 @Component({
-  selector: 'app-progress',
-  templateUrl: './progress.component.html',
+  selector: "app-progress",
+  templateUrl: "./progress.component.html",
   styles: []
 })
 export class ProgressComponent implements OnInit {
 
-  constructor() { }
+  progreso1: number = 15;
+  progreso2: number = 20;
+  constructor() {}
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
+  // actualizar(event:number) {
+
+  //     console.log(event)
+  // }
 }
