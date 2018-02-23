@@ -3,9 +3,21 @@
 .sidebar-nav {
     ul {
         li {
+            cursor: pointer;
             a.active {
                 background: #242a33;
+                color: #fff;
             }
         }
     }
+}
+
+#themecolors {
+  li a:hover{
+    cursor: pointer;
+    opacity: 0.8;
+  }
+}
+[data-body=active]{
+  border: 2px solid #ccc
 }
