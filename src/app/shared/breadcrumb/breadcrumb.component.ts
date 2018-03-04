@@ -17,7 +17,7 @@ export class BreadcrumbComponent implements OnInit {
               public _meta: Meta) {
       //nos subcribimos a la data
       this.getDataRoute().subscribe( data => {
-        console.log(data)
+        //console.log(data)
         this.label = data.titulo;
         //añade el titulo de pagina, lo podemos aplicar desde cualquier parte
         this._title.setTitle(this.label)

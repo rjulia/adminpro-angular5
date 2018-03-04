@@ -10,7 +10,8 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 
 import { Router } from '@angular/router';
-//import { SubirArchivoService } from '../subir-archivo/subir-archivo.service';
+
+import { SubirArchivoService } from '../subir-archivo/subir-archivo.service';
 
 @Injectable()
 export class UsuarioService {
@@ -22,7 +23,7 @@ export class UsuarioService {
   constructor(
     public http: HttpClient,
     public router: Router,
-    //public _subirArchivoService: SubirArchivoService
+    public _subirArchivoService: SubirArchivoService
   ) {
     //siempre cargamos el store
     this.cargarStorage();
@@ -151,45 +152,46 @@ export class UsuarioService {
               });
   }
 
-  // actualizarUsuario( usuario: Usuario ) {
+  actualizarUsuario( usuario: Usuario ) {
 
-  //   let url = URL_SERVICIOS + '/usuario/' + usuario._id;
-  //   url += '?token=' + this.token;
+    let url = URL_SERVICIOS + '/usuario/' + usuario._id;
+    url += '?token=' + this.token;
 
-  //   return this.http.put( url, usuario )
-  //               .map( (resp: any) => {
+    return this.http.put( url, usuario )
+                .map( (resp: any) => {
 
-  //                 if ( usuario._id === this.usuario._id ) {
-  //                   let usuarioDB: Usuario = resp.usuario;
-  //                   this.guardarStorage( usuarioDB._id, this.token, usuarioDB, this.menu );
-  //                 }
+                  if ( usuario._id === this.usuario._id ) {
+                    let usuarioDB: Usuario = resp.usuario;
+                    this.guardarStorage( usuarioDB._id, this.token, usuarioDB);
+                  }
 
-  //                 swal('Usuario actualizado', usuario.nombre, 'success' );
+                  swal('Usuario actualizado', usuario.nombre, 'success' );
 
-  //                 return true;
-  //               })
-  //               .catch( err => {
-  //                 swal( err.error.mensaje, err.error.errors.message, 'error' );
-  //                 return Observable.throw( err );
-  //               });
+                  return true;
+                })
+                .catch( err => {
+                  swal( err.error.mensaje, err.error.errors.message, 'error' );
+                  return Observable.throw( err );
+                });
 
-  // }
+  }
+  //Esto para cambiar imagnes utilizamos otro servicio el de la subir-archivo.services
+  cambiarImagen( archivo: File, id: string ) {
 
-  // cambiarImagen( archivo: File, id: string ) {
+    this._subirArchivoService.subirArchivo( archivo, 'usuarios', id )
+          //como es una promesa tengo el then y el catch
+          .then( (resp: any) => {
 
-  //   this._subirArchivoService.subirArchivo( archivo, 'usuarios', id )
-  //         .then( (resp: any) => {
+            this.usuario.img = resp.usuario.img;
+            swal( 'Imagen Actualizada', this.usuario.nombre, 'success' );
+            this.guardarStorage( id, this.token, this.usuario);
 
-  //           this.usuario.img = resp.usuario.img;
-  //           swal( 'Imagen Actualizada', this.usuario.nombre, 'success' );
-  //           this.guardarStorage( id, this.token, this.usuario, this.menu );
+          })
+          .catch( resp => {
+            console.log( resp );
+          }) ;
 
-  //         })
-  //         .catch( resp => {
-  //           console.log( resp );
-  //         }) ;
-
-  // }
+  }
 
   // cargarUsuarios( desde: number = 0 ) {
 

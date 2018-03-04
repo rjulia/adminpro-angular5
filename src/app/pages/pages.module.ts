@@ -2,7 +2,8 @@ import { NgModule } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 //routes childs
 import { PAGES_ROUTES } from "./pages.routing";
-
+//Pipes modules
+import { PipesModule } from "../pipes/pipes.module";
 //ng2-chart
 import { ChartsModule } from 'ng2-charts';
 
@@ -16,6 +17,8 @@ import { GraficoDonaComponent } from "../components/grafico-dona/grafico-dona.co
 import { AccountSettingsComponent } from './account-settings/account-settings.component';
 import { PromesasComponent } from './promesas/promesas.component';
 import { RxjsComponent } from './rxjs/rxjs.component';
+import { ProfileComponent } from './profile/profile.component';
+import { CommonModule } from "@angular/common";
 
 
 
@@ -29,7 +32,8 @@ import { RxjsComponent } from './rxjs/rxjs.component';
     GraficoDonaComponent,
     AccountSettingsComponent,
     PromesasComponent,
-    RxjsComponent
+    RxjsComponent,
+    ProfileComponent
   ],
   exports: [
     PagesComponent,
@@ -38,10 +42,12 @@ import { RxjsComponent } from './rxjs/rxjs.component';
     Graficas1Component
   ],
   imports:[
+    CommonModule,
     SharedModule,
     PAGES_ROUTES,
     FormsModule,
-    ChartsModule
+    ChartsModule,
+    PipesModule
   ]
 })
 
